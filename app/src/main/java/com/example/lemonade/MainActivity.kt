@@ -28,67 +28,36 @@ class MainActivity : ComponentActivity() {
         setContent {
             LemonadeTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    lemonedApp()
-                }
+                lemonedApp()
             }
         }
     }
 }
 
+
 @Composable
-fun lemonedApp(modifier: Modifier = Modifier) {
-    var state by remember { mutableStateOf(0) }
-    var stateText by remember { mutableStateOf(0) }
-    var textImage = stringResource(id = R.string.lemon_tree)
-    var imageLemoned = painterResource(id = R.drawable.lemon_tree)
-    when (state) {
-        0 -> imageLemoned = painterResource(id = R.drawable.lemon_tree)
-        1 -> imageLemoned = painterResource(id = R.drawable.lemon_squeeze)
-        2 -> imageLemoned = painterResource(id = R.drawable.lemon_drink)
-        3 -> imageLemoned = painterResource(id = R.drawable.lemon_restart)
-    }
-    when (stateText) {
-        0 -> textImage = stringResource(id = R.string.lemon_tree)
-        1 -> textImage = stringResource(id = R.string.lemon)
-        2 -> textImage = stringResource(id = R.string.drink)
-        3 -> textImage = stringResource(id = R.string.empty)
-
-    }
-
-
-    Column(
-        modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+fun lemonedApp() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.background
     ) {
-        Text(
-            text = textImage,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.padding(16.dp))
-
-
-        Image(
-            painter = imageLemoned,
-            contentDescription = stringResource(id = R.string.lemon_tree),
-            Modifier.clickable {
-
-                if (state == 1) {
-                    var squeeze = (2..4).random()
-
-                }
-                stateText++
-                state++
-
-            } )
-
-
     }
+}
+
+//функция для интерфейса
+@Composable
+fun textAndImageLemoned(
+//    параметр для текста над картинкой
+    textLabelResourceId: Int,
+//    параметр для изображения лемона
+    drawableResourceId: Int,
+//    параметр для описания изоброжения
+    contentDescriptionResourceId: Int,
+//
+    onImageClick: () -> Unit,
+
+
+    ) {
 }
 
 @Preview(showBackground = true)
